@@ -36,8 +36,8 @@
             <h1 class="fs-1 text-uppercase">Welcome to Hani's jewellery store</h1>
             <h2 class="fs-5 text-uppercase mb-4">Best place for buying an awesome jewellery</h2>
             <div class="d-flex justify-content-center">
-                <a href="login.html" class="m-2 btn btn-primary btn-lg">Login</a>
-                <a href="signup.html" class="m-2 btn btn-primary btn-lg">Sign up</a>
+                <a href="login.php" class="m-2 btn btn-primary btn-lg">Login</a>
+                <a href="signup.php" class="m-2 btn btn-primary btn-lg">Sign up</a>
             </div>
         </div>
     </header>
