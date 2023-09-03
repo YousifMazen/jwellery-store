@@ -122,8 +122,7 @@ include 'inc/logout.php';
             } else {
                 echo '<h1 class="text-center my-4">No products!</h1>';
             }
-            // Close the database connection
-            $dbc->close();
+
             ?>
             <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card mb-3">
@@ -172,6 +171,39 @@ include 'inc/logout.php';
         <!-- Learn -->
         <h1 class="text-center mt-2">Learn with us</h1>
         <div class="row">
+            <?php
+
+            $query = $dbc->prepare("SELECT * FROM blogs");
+            $query->execute();
+            $results = $query->get_result();
+
+            if ($results->num_rows > 0) {
+                // Output data of each row
+                while ($row = $results->fetch_assoc()) {
+
+                    echo '<div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="card mb-3">
+                    <div class="ratio ratio-1x1">
+                        <img src=" ' . $row["image"] . ' " class="card-img-top">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"> ' . $row["title"] . ' </h5>
+                        
+                         <form action="learn_more.php" method="get">
+                <input type="hidden" name="blogID" value="' . $row["blog_id"] . '">
+                <input type="submit" name="submit" class="btn btn-primary" value="Learn More">
+            </form>
+                    </div>
+                </div>
+            </div>';
+                }
+            } else {
+                echo '<h1 class="text-center my-4">No Blogs</h1>';
+            }
+            // Close the database connection
+            $dbc->close();
+            ?>
+<!-- 
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card mb-3">
                     <div class="ratio ratio-1x1">
@@ -230,7 +262,7 @@ include 'inc/logout.php';
                         <a href="learn_more.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <footer class="bg-dark text-white text-center py-3">

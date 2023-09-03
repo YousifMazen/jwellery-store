@@ -98,21 +98,6 @@ include 'inc/logout.php';
             // Close the database connection
             $dbc->close();
             ?>
-            <!-- <div class="col-lg-6">
-                <img src="https://davidmorris.com/app/uploads/2022/10/Text-1-1-768x692.png" alt="Product Image" class="img-fluid" width="400" height="400">
-            </div>
-            <div class="col-lg-6">
-                <h2>Blue Dimond ring</h2>
-                <p class="text-muted">Category: Rings</p>
-                <h3 class="text-success">$1199.99</h3>
-                <p>Blue diamonds: Rare and captivating, their exquisite hue and scarcity make them prized treasures of
-                    elegance.</p>
-                <div class="mb-3">
-                    <label for="quantity">Quantity</label>
-                    <input type="number" id="quantity" class="form-control" value="1">
-                </div>
-                <button class="btn btn-primary mb-3">Add to Cart</button>
-            </div> -->
         </div>
     </div>
     <footer class="bg-dark text-white text-center py-3">
