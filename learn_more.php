@@ -46,7 +46,9 @@ include 'inc/logout.php';
                         <a class="nav-link" href="contact_us.php">Contact us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php">Log out</a>
+                        <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                            Logout
+                        </button>
                     </li>
                 </ul>
             </div>

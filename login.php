@@ -67,6 +67,7 @@ if (isset($_POST['submit'])) {
             $results = $query->get_result();
 
             if ($row = $results->fetch_assoc()) {
+                $_SESSION['user_id'] = $row['user_id'];
                 $_SESSION['user_name'] = $row['name'];
                 $_SESSION['accoutn_type'] = $row['accoutn_type'];
                 mysqli_close($dbc);
