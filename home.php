@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'db.php';
 include 'inc/logout.php';
 ?>
 
@@ -17,7 +18,6 @@ include 'inc/logout.php';
             font-family: 'Gill Sans MT';
         }
     </style>
-
 </head>
 
 <body>
@@ -92,20 +92,40 @@ include 'inc/logout.php';
     <div class="container">
         <h1 class="text-center my-4">Pick what you like</h1>
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            <?php
+
+            $query = $dbc->prepare("SELECT * FROM products");
+            $query->execute();
+            $results = $query->get_result();
+
+            if ($results->num_rows > 0) {
+                // Output data of each row
+                while ($row = $results->fetch_assoc()) {
+                    echo '<div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card mb-3">
                     <div class="ratio ratio-1x1">
-                        <img src="https://davidmorris.com/app/uploads/2022/10/Text-1-1-768x692.png" class="card-img-top">
+                        <img src=" ' . $row["image"] . ' " class="card-img-top">
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Blue Dimond</h5>
-                        <p class="card-text">Blue diamonds: Rare and captivating, their exquisite hue and scarcity make
-                            them prized treasures of elegance.</p>
-                        <a href="product_details.html" class="btn btn-primary">Buy Here</a>
+                        <h5 class="card-title"> ' . $row["name"] . ' </h5>
+                        <p class="card-text">
+                        ' . $row["description"] . '
+                        </p>
+                         <form action="product_details.php" method="get">
+                <input type="hidden" name="productID" value="' . $row["product_id"] . '">
+                <input type="submit" name="submit" class="btn btn-primary" value="Buy Here">
+            </form>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            </div>';
+                }
+            } else {
+                echo '<h1 class="text-center my-4">No products!</h1>';
+            }
+            // Close the database connection
+            $dbc->close();
+            ?>
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card mb-3">
                     <div class="ratio ratio-1x1">
                         <img src="https://slimages.macysassets.com/is/image/MCY/products/0/optimized/21147590_fpx.tif?op_sharpen=1&wid=700&hei=855&fit=fit,1" class="card-img-top">
@@ -118,8 +138,8 @@ include 'inc/logout.php';
                         <a href="product_details.html" class="btn btn-primary">Buy Here</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            </div> -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card mb-3">
                     <div class="ratio ratio-1x1">
                         <img src="https://www.zalesoutlet.com/productimages/processed/V-20024892_1_800.jpg" class="card-img-top">
@@ -132,8 +152,8 @@ include 'inc/logout.php';
                         <a href="product_details.html" class="btn btn-primary">Buy Here</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
+            </div> -->
+            <!-- <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card mb-3">
                     <div class="ratio ratio-1x1">
                         <img src="https://www.kingfursandfinejewelry.com/upload/product/trueromance_rm1025-1600969454.png" class="card-img-top">
@@ -146,7 +166,7 @@ include 'inc/logout.php';
                         <a href="product_details.html" class="btn btn-primary">Buy Here</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <hr>
         <!-- Learn -->
@@ -214,7 +234,7 @@ include 'inc/logout.php';
         </div>
     </div>
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2023 Hani's jewellery. All rights reserved.</p>
+        <p>&copy; 2023 Hani' s jewellery. All rights reserved.</p>
     </footer>
 </body>
 
